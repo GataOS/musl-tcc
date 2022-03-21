@@ -37,7 +37,7 @@ expl:
 	fstpt (%rsp)
 	fstpt 16(%rsp)
 	fstpt 32(%rsp)
-	call exp2l@PLT
+	call exp2l
 		# if 2^hi == inf return 2^hi
 	fld %st(0)
 	fstpt (%rsp)
