@@ -23,6 +23,7 @@ static __inline long __syscall2(long n, long a1, long a2)
 	return ret;
 }
 
+
 static __inline long __syscall3(long n, long a1, long a2, long a3)
 {
 	unsigned long ret;
@@ -31,6 +32,7 @@ static __inline long __syscall3(long n, long a1, long a2, long a3)
 	return ret;
 }
 
+/*
 static __inline long __syscall4(long n, long a1, long a2, long a3, long a4)
 {
 	unsigned long ret;
@@ -60,6 +62,14 @@ static __inline long __syscall6(long n, long a1, long a2, long a3, long a4, long
 						  "d"(a3), "r"(r10), "r"(r8), "r"(r9) : "rcx", "r11", "memory");
 	return ret;
 }
+*/
+
+long int __syscall4(long int n,long int a1,long int a2,long int a3,
+		    long int a4);
+long int __syscall5(long int n,long int a1,long int a2,long int a3,
+		    long int a4,long int a5);
+long int __syscall6(long int n,long int a1,long int a2,long int a3,
+		    long int a4,long int a5,long int a6);
 
 #define VDSO_USEFUL
 #define VDSO_CGT_SYM "__vdso_clock_gettime"
