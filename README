@@ -1,23 +1,19 @@
+This is a modified version of musl libc 1.12 which is able to be
+compiled with TinyCC on x86_64 machines.
 
-    musl libc
+Although TinyCC is quite complete as a tiny C compiler,some features are
+still missing,including:
+- _Complex types
+	All related to _Complex are removed.
+- Full GNU-style inline assembly support.
+	The original versions of __syscall4(),__syscall5() and __syscall6()
+	don't work.They are replaced by assembly implemention in
+	/src/unistd/x86_64/syscall.S
 
-musl, pronounced like the word "mussel", is an MIT-licensed
-implementation of the standard C library targetting the Linux syscall
-API, suitable for use in a wide range of deployment environments. musl
-offers efficient static and dynamic linking support, lightweight code
-and low runtime overhead, strong fail-safe guarantees under correct
-usage, and correctness in the sense of standards conformance and
-safety. musl is built on the principle that these goals are best
-achieved through simple code that is easy to understand and maintain.
+To compile,simply run 
+	export CC=tcc			# Set the compiler
+	./configure --target=x86_64	# The script cannot detect the
+					  platform with tcc.
+	make
 
-The 1.1 release series for musl features coverage for all interfaces
-defined in ISO C99 and POSIX 2008 base, along with a number of
-non-standardized interfaces for compatibility with Linux, BSD, and
-glibc functionality.
-
-For basic installation instructions, see the included INSTALL file.
-Information on full musl-targeted compiler toolchains, system
-bootstrapping, and Linux distributions built on musl can be found on
-the project website:
-
-    http://www.musl-libc.org/
+All modified and addtional files are under MIT License as well.
