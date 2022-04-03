@@ -45,6 +45,8 @@ __syscall6:
 	movq	%rcx,	%rdx
 	movq	%r8,	%r10
 	movq	%r9,	%r8
-	popq	%r9		// The last argument is stored on the stack
+	movq	(%rsp),	%r9		// The last argument is stored on
+					// the stack
+					// But do NOT mess up the stack
 	syscall
 	retq
