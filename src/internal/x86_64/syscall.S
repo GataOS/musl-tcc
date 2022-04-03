@@ -1,6 +1,6 @@
 /*
 	musl-tcc
-	File:/src/unistd/x86_64/syscall.S
+	File:/src/internal/x86_64/syscall.S
 	Copyright(c) 2022 ziyao.
 */
 
