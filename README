@@ -8,7 +8,7 @@ still missing,including:
 - Full GNU-style inline assembly support.
 	The original versions of __syscall4(),__syscall5() and __syscall6()
 	don't work.They are replaced by assembly implemention in
-	/src/unistd/x86_64/syscall.S
+	/src/internal/x86_64/syscall.S
 - math library is removed momently.
 	Because some missing floating-point features of TinyCC.I am working
 	on completing.
@@ -25,6 +25,12 @@ To compile,simply run
 	./configure --target=x86_64	# The script cannot detect the
 					# platform with tcc because of
 					# missing option "-dumpmachine"
-	make
+	make				# I finish my compiling in 10s with
+					  two threads on i7-720QM @ 1.60GHz
 
 All modified and addtional files are under MIT License as well.
+Some changes are made to my TinyCC (This means I may have a different
+version from yours,so if you fail to compile,try to apply the patches
+listed in /tcc-patch/,including:
+- empty_archive.patch
+	Enables TinyCC to generate empty ar archive
