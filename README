@@ -15,8 +15,9 @@ still missing,including:
 - @PLT dynamic linking function calls are removed.
 	TinyCC does not have the feature.Dynamic linking library(.so)
 	is expected not to work.
-- fenv library is removed momently.
-	I am working on adding the missing fp instructions to TinyCC.
+
+Some features had been removed momently but now they are usable,including:
+- fenv library(maybe applying a patch to TinyCC is needed)
 
 To compile,simply run 
 	export CC=tcc			# Set the compiler
@@ -34,3 +35,5 @@ version from yours,so if you fail to compile,try to apply the patches
 listed in /tcc-patch/,including:
 - empty_archive.patch
 	Enables TinyCC to generate empty ar archive
+- mxcsr.patch
+	Adds the support of ldmxcsr and stmxcsr
