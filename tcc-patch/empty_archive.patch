@@ -1,5 +1,5 @@
 diff --git a/tcctools.c b/tcctools.c
-index 4567b81..7c643dc 100644
+index 4567b81..2bcc990 100644
 --- a/tcctools.c
 +++ b/tcctools.c
 @@ -61,7 +61,7 @@ static int contains_any(const char *s, const char *list) {
@@ -22,13 +22,15 @@ index 4567b81..7c643dc 100644
  
      if (ret == 1)
          return ar_usage(ret);
-@@ -242,6 +243,9 @@ ST_FUNC int tcc_tool_ar(TCCState *s1, int argc, char **argv)
+@@ -242,6 +243,11 @@ ST_FUNC int tcc_tool_ar(TCCState *s1, int argc, char **argv)
          hofs++, fpos = 1;
      // write header
      fwrite("!<arch>\n", 8, 1, fh);
 +    // create an empty archive
-+    if (!funccnt)
++    if (!funccnt) {
++        ret = 0;
 +        goto the_end;
++    }
      sprintf(stmp, "%-10d", (int)(strpos + (funccnt+1) * sizeof(int)));
      memcpy(&arhdr.ar_size, stmp, 10);
      fwrite(&arhdr, sizeof(arhdr), 1, fh);
