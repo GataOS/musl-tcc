@@ -20,14 +20,12 @@ Some features had been removed momently but now they are usable,including:
 - fenv library(maybe applying a patch to TinyCC is needed)
 
 To compile,simply run 
-	export CC=tcc			# Set the compiler
-	export RANLIB='tcc -r'		# Using tcc builtin librarian
-	export AR='tcc -ar'		# See above
-	./configure --target=x86_64	# The script cannot detect the
-					# platform with tcc because of
-					# missing option "-dumpmachine"
+	./configure --target=x86_64 CC='tcc' AR='tcc -ar' RANLIB='echo' \
+		    LIBCC='/usr/local/lib/tcc/libtcc1.a'
 	make				# I finish my compiling in 10s with
 					  two threads on i7-720QM @ 1.60GHz
+TinyCC's runtime environment library libtcc1.a needs specifying manually
+now.The path of argument LIBCC may need adjusting for your machine.
 
 All modified and addtional files are under MIT License as well.
 Some changes are made to my TinyCC (This means I may have a different
