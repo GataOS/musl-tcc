@@ -9,15 +9,15 @@ still missing,including:
 	The original versions of __syscall4(),__syscall5() and __syscall6()
 	don't work.They are replaced by assembly implemention in
 	/src/internal/x86_64/syscall.S
-- math library is removed momently.
-	Because some missing floating-point features of TinyCC.I am working
-	on completing.
+- math library has been use the pure C implementation
+	Because some missing floating-point features of TinyCC.
 - @PLT dynamic linking function calls are removed.
 	TinyCC does not have the feature.Dynamic linking library(.so)
 	is expected not to work.
 
 Some features had been removed momently but now they are usable,including:
 - fenv library(maybe applying a patch to TinyCC is needed)
+- math library(using C implementation now)
 
 To compile,simply run 
 	./configure --target=x86_64 CC='tcc' AR='tcc -ar' RANLIB='echo' \
