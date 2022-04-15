@@ -11,5 +11,6 @@
 int main(void)
 {
 	write(0,"Hello World\n",12);
+	write(0,"Again\n",6);
 	return 0;
 }
