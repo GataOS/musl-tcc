@@ -11,13 +11,11 @@ still missing,including:
 	/src/internal/x86_64/syscall.S
 - math library has been use the pure C implementation
 	Because some missing floating-point features of TinyCC.
-- @PLT dynamic linking function calls are removed.
-	TinyCC does not have the feature.Dynamic linking library(.so)
-	is expected not to work.
 
 Some features had been removed momently but now they are usable,including:
-- fenv library(maybe applying a patch to TinyCC is needed)
+- fenv library
 - math library(using C implementation now)
+- dynamic link support (NOT well tested)
 
 To compile,simply run 
 	./configure --target=x86_64 CC='tcc' AR='tcc -ar' RANLIB='echo' \
@@ -29,9 +27,20 @@ now.The path of argument LIBCC may need adjusting for your machine.
 
 All modified and addtional files are under MIT License as well.
 Some changes are made to my TinyCC (This means I may have a different
-version from yours,so if you fail to compile,try to apply the patches
-listed in /tcc-patch/,including:
-- empty_archive.patch
-	Enables TinyCC to generate empty ar archive
-- mxcsr.patch
-	Adds the support of ldmxcsr and stmxcsr
+version from yours,so if you fail to compile,try to get the lastest
+version from TinyCC's Git Repository.The building process is OK on
+commit 2d210fe.The later version should also work
+	$ tcc -v tcc # on my machine
+	version 0.9.27 mob:2d210fe (x86_64 Linux)
+
+Some helper scripts are in /tests/Compile.sh (for static link) and
+/tests/Compile_Dynamic.sh (for dynamic link).As is mentioned,modifying the
+path to libtcc1.a may be needed.
+
+A simple single-filed editor pico is included (/tests/pico.c),its LICENSE is
+DIFFERENT from original musl and musl-tcc.So be careful when you use it.
+This generates its exectuable file:
+	$ ./Compile.sh pico.c pico
+or
+	$ ./Compile_Dynamic.sh pico.c pico
+Please run these commands in /tests/
